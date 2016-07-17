@@ -1,0 +1,101 @@
+body{
+	background: url('brillant.png');
+}
+#field{
+	background: rgba(0,0,0,0.1);
+	display: inline-block;
+	position: absolute;
+	width: 400px;
+	height: 600px;
+	left: 50%;
+	margin-left: -250px;
+	border: 1px solid #aaa;
+}
+
+.cell{
+	background: rgba(0,0,0,0.2);
+	display: inline-block;
+	position: absolute;
+	width: 20px;
+	height: 20px;
+	top:-1000px;
+}
+
+#score{
+	display: inline-block;
+	background: rgba(0,0,0,0.05);
+	position: absolute;
+	font-size: 50px;
+	color: #999;
+	text-align: center;
+	user-select: none;
+	line-height: 1.9em;
+	width: 200px;
+	height: 100px;
+	left: 50%;
+	margin-left: 170px;
+	border-radius: 3px;
+}
+
+.button{
+	display: inline-block;
+	background: rgba(0,0,0,0.05);
+	position: absolute;
+	font-size: 20px;
+	color: #999;
+	text-align: center;
+	user-select: none;
+	line-height: 2em;
+	width: 200px;
+	height: 50px;
+	left: 50%;
+	margin-left: 170px;
+	border-radius: 3px;
+	user-select:none;
+}
+
+#restart{
+	top: 120px;
+}
+
+#info{
+	display: inline-block;
+	background: rgba(0,0,0,0.05);
+	position: absolute;
+	width: 200px;
+	height: 150px;
+	left: 50%;
+	top: 184px;
+	margin-left: 170px;
+	border-radius: 3px;
+}
+
+#info text{
+	font-size: 20px;
+	color: #999;
+	user-select: none;
+	line-height: 1.5em;
+	margin-left: 10px;
+}
+
+
+.button:hover{
+	background: rgba(0,100,0,0.1);
+}
+
+#GameOver{
+	display: none;
+	background: rgba(0,0,0,0.7);
+	position: absolute;
+	font-size: 50px;
+	color: #FFF;
+	text-align: center;
+	user-select: none;
+	line-height: 2.3em;
+	width: 270px;
+	height: 130px;
+	left: 50%;
+	margin : 125px -175px;
+
+	border-radius: 3px;
+}
