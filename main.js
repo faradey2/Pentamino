@@ -3,7 +3,7 @@ field.width = 20;
 field.height = 30;
 var ScoreBoard = document.querySelector("#score");
 
-var mainPentamino ;
+var mainPentamino;
 var pull = [];
 const MOVE_DOWN_TICKS = 5;
 var tick = 0;
@@ -15,8 +15,8 @@ var commandBuffer = [];
 
 function startGame(){
 	mainPentamino = createNewPentamino(); 
+	mainPentamino.draw();
 	prTimer = setInterval(process,75);
-	draw();
 	score = 0;
 	pull = [];
 	document.querySelector("#GameOver").style.display = "none";
@@ -32,7 +32,7 @@ function process(){
 	commandBufferProcessing();
 	
 	if(--tick < 0){
-		if(!checkMoveDown()){
+		if(!mainPentamino.checkMoveDown()){
 			if(mainPentamino.y<=0)
 				gameOver();
 			else{
@@ -54,22 +54,22 @@ function process(){
 	}
 
 
-	draw();
+	mainPentamino.draw();
 
 }
 
 function commandBufferProcessing(){
 	if(commandBuffer.length == 0) return;
 	
-	if(commandBuffer[0] == 'left' && checkMoveLeft())
+	if(commandBuffer[0] == 'left' && mainPentamino.checkMoveLeft())
 		mainPentamino.x--;
-	else if(commandBuffer[0] == 'right' && checkMoveRight())
+	else if(commandBuffer[0] == 'right' && mainPentamino.checkMoveRight())
 		mainPentamino.x++;
 	else if(commandBuffer[0] == 'down')
-		while(checkMoveDown())
+		while(mainPentamino.checkMoveDown())
 			mainPentamino.y++;
 	else if(commandBuffer[0] == 'rotate')
-		rotate();
+		mainPentamino.rotate();
 	commandBuffer.shift();
 
 
@@ -77,13 +77,7 @@ function commandBufferProcessing(){
 
 
 
-function draw(){
-	for(var i = 0 ; i < mainPentamino.cells.length;i++){
-		var cell = mainPentamino.cells[i];
-		if(cell.y + mainPentamino.y >= 0)
-			drawCell(cell, mainPentamino.x + cell.x,mainPentamino.y + cell.y);
-	}
-}
+
 
 function drawCell(cell,posX,posY) {
 	if(posX == undefined) posX = cell.x;
@@ -95,9 +89,9 @@ function drawCell(cell,posX,posY) {
 }
 
 function createNewPentamino(){
-	mainPentamino = createPentamino(types[Math.floor(Math.random()*types.length)]);
+	mainPentamino = new Pentamino(types[Math.floor(Math.random()*types.length)]);
 	// mainPentamino = createPentamino('X');
-	if(Math.random()<0.5)	reflection();
+	if(Math.random()<0.5)	mainPentamino.reflection();
 	return mainPentamino; 
 }
 
@@ -117,7 +111,7 @@ function checkFullLine(){
 				}
 				else if(pull[j].y<field.height-1-i){
 					pull[j].y++;
-					drawCell(pull[j]);
+					mainPentamino.drawCell(pull[j]);
 				}
 			score++;
 			i--;
